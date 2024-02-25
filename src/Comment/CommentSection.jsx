@@ -4,7 +4,6 @@ import CommentForm from './CommentForm';
 
 const CommentSection = () => {
     const [comments, setComments] = useState([]);
-    // const [newComment, setNewComment] = useState('');
     const [replyTo, setReplyTo] = useState(null);
 
     const handlePostComment = (newComment) => {
@@ -29,7 +28,8 @@ const CommentSection = () => {
     const handleDeleteComment = (commentId, parentIndex) => {
         const updatedComments = [...comments];
         if (parentIndex === null) {
-            updatedComments.splice(parentIndex, 1);
+            const commentIndex = updatedComments.findIndex(comment => comment.id === commentId);
+            updatedComments.splice(commentIndex, 1); // Corrected
         } else {
             updatedComments[parentIndex].replies = updatedComments[parentIndex].replies.filter(reply => reply.id !== commentId);
         }
@@ -43,7 +43,8 @@ const CommentSection = () => {
     const handleStarComment = (commentId, parentIndex) => {
         const updatedComments = [...comments];
         if (parentIndex === null) {
-            updatedComments[parentIndex].starred = !updatedComments[parentIndex].starred;
+            const commentIndex = updatedComments.findIndex(comment => comment.id === commentId);
+            updatedComments[commentIndex].starred = !updatedComments[commentIndex].starred;
         } else {
             const replyIndex = updatedComments[parentIndex].replies.findIndex(reply => reply.id === commentId);
             updatedComments[parentIndex].replies[replyIndex].starred = !updatedComments[parentIndex].replies[replyIndex].starred;
@@ -51,9 +52,10 @@ const CommentSection = () => {
         setComments(updatedComments);
     };
 
+
     return (
         <div>
-            <CommentForm handlePostComment={handlePostComment} />
+            <CommentForm handlePostComment={handlePostComment} replyTo={replyTo !== null ? comments[replyTo].author : null} />
             <ul>
                 {comments.map((comment, index) => (
                     <Comment
@@ -71,5 +73,7 @@ const CommentSection = () => {
 };
 
 export default CommentSection;
+
+
 
 
