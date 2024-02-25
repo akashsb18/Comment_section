@@ -1,0 +1,42 @@
+/* styles.css */
+
+.comment-content {
+    /* Add styles for the comment content container */
+}
+
+.comment-button {
+    cursor: pointer;
+    padding: 8px 16px;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.comment-button:hover {
+    background-color: #e0e0e0;
+    /* Change color on hover */
+}
+
+.delete-button {
+    background-color: #f44336;
+    /* Red color for delete button */
+    color: #fff;
+    /* White text color */
+}
+
+.star-button {
+    background-color: #ffeb3b;
+    /* Yellow color for star button */
+    color: #000;
+    /* Black text color */
+}
+
+.reply-button {
+    background-color: #2196f3;
+    /* Blue color for reply button */
+    color: #fff;
+    /* White text color */
+}
